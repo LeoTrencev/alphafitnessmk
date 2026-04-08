@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { X } from "lucide-react";
 import gallery1 from "@/assets/gallery-1.jpg";
@@ -8,8 +8,10 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
+import gymInt2 from "@/assets/gym-interior-2.jpg";
+import gymInt3 from "@/assets/gym-interior-3.jpg";
 
-const images = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
+const images = [gymInt2, gallery1, gallery2, gallery3, gymInt3, gallery4, gallery5, gallery6];
 
 const GallerySection = () => {
   const { t } = useLanguage();
@@ -26,6 +28,12 @@ const GallerySection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
+          <motion.div
+            initial={{ width: 0 }}
+            animate={isInView ? { width: "60px" } : {}}
+            transition={{ duration: 0.6 }}
+            className="h-[2px] bg-primary mx-auto mb-4"
+          />
           <p className="font-display text-sm tracking-[0.3em] text-primary font-medium mb-3">
             {t("gallery.subtitle")}
           </p>
@@ -34,13 +42,14 @@ const GallerySection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {images.map((img, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
+              whileHover={{ y: -8 }}
               className={`relative overflow-hidden rounded-lg cursor-pointer group ${
                 i === 0 || i === 5 ? "row-span-2" : ""
               }`}
@@ -54,32 +63,44 @@ const GallerySection = () => {
                 style={{ minHeight: i === 0 || i === 5 ? "400px" : "200px" }}
               />
               <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-500" />
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-1 bg-primary"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.4 }}
+                style={{ originX: 0 }}
+              />
             </motion.div>
           ))}
         </div>
       </div>
 
-      {selectedImage && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
-            className="absolute top-6 right-6 text-foreground hover:text-primary transition-colors"
           >
-            <X className="w-8 h-8" />
-          </button>
-          <img
-            src={selectedImage}
-            alt="Gallery preview"
-            className="max-w-full max-h-[85vh] object-contain rounded-lg"
-          />
-        </motion.div>
-      )}
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-6 right-6 text-foreground hover:text-primary transition-colors"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <motion.img
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              src={selectedImage}
+              alt="Gallery preview"
+              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

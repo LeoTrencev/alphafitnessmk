@@ -1,7 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Check, Star } from "lucide-react";
+import { Check, Star, Crown } from "lucide-react";
 
 const PricingSection = () => {
   const { t } = useLanguage();
@@ -27,6 +27,12 @@ const PricingSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
+          <motion.div
+            initial={{ width: 0 }}
+            animate={isInView ? { width: "60px" } : {}}
+            transition={{ duration: 0.6 }}
+            className="h-[2px] bg-primary mx-auto mb-4"
+          />
           <p className="font-display text-sm tracking-[0.3em] text-primary font-medium mb-3">
             {t("pricing.subtitle")}
           </p>
@@ -42,10 +48,11 @@ const PricingSection = () => {
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`relative rounded-lg p-6 border transition-all duration-300 hover:-translate-y-1 ${
+                transition={{ duration: 0.6, delay: i * 0.1, type: "spring", stiffness: 100 }}
+                whileHover={{ y: -12, boxShadow: isPopular ? "0 20px 40px hsla(48, 100%, 50%, 0.2)" : isBest ? "0 20px 40px hsla(40, 100%, 55%, 0.2)" : "0 20px 40px hsla(0, 0%, 0%, 0.3)" }}
+                className={`relative rounded-lg p-6 border transition-all duration-300 ${
                   isPopular
                     ? "bg-primary/10 border-primary shadow-lg shadow-primary/10"
                     : isBest
@@ -54,12 +61,17 @@ const PricingSection = () => {
                 }`}
               >
                 {plan.badge && (
-                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-body font-semibold flex items-center gap-1 ${
-                    isPopular ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
-                  }`}>
-                    <Star className="w-3 h-3" />
+                  <motion.div
+                    initial={{ scale: 0, rotate: -12 }}
+                    animate={isInView ? { scale: 1, rotate: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.5 + i * 0.1, type: "spring" }}
+                    className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-body font-semibold flex items-center gap-1 ${
+                      isPopular ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
+                    }`}
+                  >
+                    {isPopular ? <Star className="w-3 h-3" /> : <Crown className="w-3 h-3" />}
                     {plan.badge}
-                  </div>
+                  </motion.div>
                 )}
 
                 <h3 className="font-display text-lg font-semibold text-foreground mb-4 text-center">
@@ -67,11 +79,18 @@ const PricingSection = () => {
                 </h3>
 
                 <div className="text-center mb-6">
-                  <span className="font-display text-4xl font-bold text-foreground">{plan.price}</span>
+                  <motion.span
+                    className="font-display text-4xl font-bold text-foreground inline-block"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1, type: "spring", stiffness: 200 }}
+                  >
+                    {plan.price}
+                  </motion.span>
                   <span className="font-body text-sm text-muted-foreground ml-1">{t("pricing.den")}</span>
                 </div>
 
-                <div className="space-y-3 mb-6">
+                <div className="space-y-3">
                   {features.map((feature, fi) => (
                     <div key={fi} className="flex items-center gap-2 text-sm font-body text-muted-foreground">
                       <Check className="w-4 h-4 text-primary flex-shrink-0" />
@@ -79,14 +98,6 @@ const PricingSection = () => {
                     </div>
                   ))}
                 </div>
-
-                <button className={`w-full py-2.5 rounded-sm font-display text-sm tracking-wider uppercase transition-all duration-300 ${
-                  isPopular
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary"
-                }`}>
-                  {t("pricing.select")}
-                </button>
               </motion.div>
             );
           })}
