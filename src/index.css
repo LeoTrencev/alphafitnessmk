@@ -6,77 +6,77 @@
 
 @layer base {
   :root {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 5%;
+    --foreground: 48 100% 96%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 9%;
+    --card-foreground: 48 100% 96%;
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 48 100% 96%;
 
-    --primary: 0 72% 51%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 48 100% 50%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 0 0% 16%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 48 80% 90%;
 
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 30 90% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 40 100% 55%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 72% 51%;
+    --border: 48 30% 18%;
+    --input: 48 20% 16%;
+    --ring: 48 100% 50%;
 
     --radius: 0.5rem;
 
     --font-display: 'Oswald', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 0 72% 51%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 16%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 0 72% 51%;
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 48 80% 90%;
+    --sidebar-primary: 48 100% 50%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 48 80% 90%;
+    --sidebar-border: 48 30% 18%;
+    --sidebar-ring: 48 100% 50%;
   }
 
   .light {
-    --background: 0 0% 97%;
-    --foreground: 0 0% 10%;
+    --background: 48 20% 96%;
+    --foreground: 0 0% 8%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 48 30% 98%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 48 30% 98%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 0 72% 51%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 48 100% 45%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 0 0% 92%;
-    --secondary-foreground: 0 0% 20%;
+    --secondary: 48 15% 90%;
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 48 10% 92%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 30 90% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 40 100% 50%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
-    --ring: 0 72% 51%;
+    --border: 48 15% 82%;
+    --input: 48 15% 82%;
+    --ring: 48 100% 45%;
   }
 }
 
@@ -118,9 +118,9 @@
   .hero-overlay {
     background: linear-gradient(
       180deg,
-      hsla(0, 0%, 0%, 0.7) 0%,
+      hsla(0, 0%, 0%, 0.75) 0%,
       hsla(0, 0%, 0%, 0.4) 50%,
-      hsla(0, 0%, 0%, 0.8) 100%
+      hsla(0, 0%, 0%, 0.85) 100%
     );
   }
 }
