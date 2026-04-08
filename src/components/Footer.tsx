@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Facebook, Instagram } from "lucide-react";
+
 
 const Footer = () => {
   const { t } = useLanguage();
