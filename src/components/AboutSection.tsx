@@ -1,7 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Dumbbell, Users, Clock } from "lucide-react";
+import { Dumbbell, Fingerprint, Clock } from "lucide-react";
 import aboutImg from "@/assets/gym-interior-4.jpg";
 
 const AboutSection = () => {
@@ -11,7 +11,7 @@ const AboutSection = () => {
 
   const features = [
     { icon: Dumbbell, title: t("about.feature1.title"), desc: t("about.feature1.desc") },
-    { icon: Users, title: t("about.feature2.title"), desc: t("about.feature2.desc") },
+    { icon: Fingerprint, title: t("about.feature2.title"), desc: t("about.feature2.desc") },
     { icon: Clock, title: t("about.feature3.title"), desc: t("about.feature3.desc") },
   ];
 

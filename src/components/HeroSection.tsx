@@ -1,7 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import heroImg from "@/assets/gym-interior-1.jpg";
+import heroImg from "@/assets/homepage.jpg";
 
 const HeroSection = () => {
   const { t } = useLanguage();

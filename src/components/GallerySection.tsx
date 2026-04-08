@@ -18,10 +18,16 @@ import gallery13 from "@/assets/gallery-13.jpg";
 import gallery14 from "@/assets/gallery-14.jpg";
 import gallery15 from "@/assets/gallery-15.jpg";
 import gallery16 from "@/assets/gallery-16.jpg";
+import gallery17 from "@/assets/gallery-17.jpg";
+import gallery18 from "@/assets/gallery-18.jpg";
+import gallery19 from "@/assets/gallery-19.jpg";
+import gallery20 from "@/assets/gallery-20.jpg";
+import gallery21 from "@/assets/gallery-21.jpg";
+import gallery22 from "@/assets/gallery-22.jpg";
 import gymInt2 from "@/assets/gym-interior-2.jpg";
 import gymInt3 from "@/assets/gym-interior-3.jpg";
 
-const images = [gymInt2, gallery1, gallery2, gallery7, gallery8, gallery9, gallery10, gallery3, gymInt3, gallery4, gallery11, gallery12, gallery13, gallery14, gallery5, gallery15, gallery6, gallery16];
+const images = [gymInt2, gallery1, gallery2, gallery7, gallery8, gallery9, gallery10, gallery3, gymInt3, gallery4, gallery11, gallery12, gallery13, gallery14, gallery5, gallery15, gallery6, gallery16, gallery17, gallery18, gallery19, gallery20, gallery21, gallery22];
 
 const GallerySection = () => {
   const { t } = useLanguage();
