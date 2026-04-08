@@ -8,10 +8,20 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
+import gallery7 from "@/assets/gallery-7.jpg";
+import gallery8 from "@/assets/gallery-8.jpg";
+import gallery9 from "@/assets/gallery-9.jpg";
+import gallery10 from "@/assets/gallery-10.jpg";
+import gallery11 from "@/assets/gallery-11.jpg";
+import gallery12 from "@/assets/gallery-12.jpg";
+import gallery13 from "@/assets/gallery-13.jpg";
+import gallery14 from "@/assets/gallery-14.jpg";
+import gallery15 from "@/assets/gallery-15.jpg";
+import gallery16 from "@/assets/gallery-16.jpg";
 import gymInt2 from "@/assets/gym-interior-2.jpg";
 import gymInt3 from "@/assets/gym-interior-3.jpg";
 
-const images = [gymInt2, gallery1, gallery2, gallery3, gymInt3, gallery4, gallery5, gallery6];
+const images = [gymInt2, gallery1, gallery2, gallery7, gallery8, gallery9, gallery10, gallery3, gymInt3, gallery4, gallery11, gallery12, gallery13, gallery14, gallery5, gallery15, gallery6, gallery16];
 
 const GallerySection = () => {
   const { t } = useLanguage();
@@ -48,10 +58,10 @@ const GallerySection = () => {
               key={i}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
+              transition={{ duration: 0.6, delay: i * 0.05 }}
               whileHover={{ y: -8 }}
               className={`relative overflow-hidden rounded-lg cursor-pointer group ${
-                i === 0 || i === 5 ? "row-span-2" : ""
+                i === 0 || i === 7 || i === 14 ? "row-span-2" : ""
               }`}
               onClick={() => setSelectedImage(img)}
             >
@@ -60,7 +70,7 @@ const GallerySection = () => {
                 alt={`Alpha Fitness gallery ${i + 1}`}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
-                style={{ minHeight: i === 0 || i === 5 ? "400px" : "200px" }}
+                style={{ minHeight: i === 0 || i === 7 || i === 14 ? "400px" : "200px" }}
               />
               <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-500" />
               <motion.div

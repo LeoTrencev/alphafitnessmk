@@ -103,7 +103,7 @@ const ContactSection = () => {
               className="mt-6 rounded-lg overflow-hidden border border-border h-[300px]"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1487.7!2d22.4643!3d41.6381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1355df4c2d9f82ed%3A0x4c5b6e8a2f1d3e7a!2z0LHRg9C7LiDQkNC70LXQutGB0LDQvdC00LDRgCDQnNCw0LrQtdC00L7QvdGB0LrQuCDQsdGALjMsINCg0LDQtNC-0LLQuNGI!5e0!3m2!1smk!2smk!4v1700000000000!5m2!1smk!2smk&markers=color:red%7C41.6381,22.4643"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1487.7!2d22.4643!3d41.6381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135500b153444071%3A0x7e28aa24bfdb08f0!2sAlpha%20Fitness!5e0!3m2!1smk!2smk!4v1700000000000!5m2!1smk!2smk"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

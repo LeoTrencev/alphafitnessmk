@@ -51,10 +51,10 @@ const PricingSection = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.1, type: "spring", stiffness: 100 }}
-                whileHover={{ y: -12, boxShadow: isPopular ? "0 20px 40px hsla(48, 100%, 50%, 0.2)" : isBest ? "0 20px 40px hsla(40, 100%, 55%, 0.2)" : "0 20px 40px hsla(0, 0%, 0%, 0.3)" }}
+                whileHover={{ y: -12, boxShadow: isPopular ? "0 20px 40px hsla(0, 80%, 50%, 0.25)" : isBest ? "0 20px 40px hsla(48, 100%, 50%, 0.2)" : "0 20px 40px hsla(0, 0%, 0%, 0.3)" }}
                 className={`relative rounded-lg p-6 border transition-all duration-300 ${
                   isPopular
-                    ? "bg-primary/10 border-primary shadow-lg shadow-primary/10"
+                    ? "bg-destructive/10 border-destructive shadow-lg shadow-destructive/10"
                     : isBest
                     ? "bg-accent/10 border-accent shadow-lg shadow-accent/10"
                     : "bg-card border-border hover:border-primary/50"
@@ -66,7 +66,7 @@ const PricingSection = () => {
                     animate={isInView ? { scale: 1, rotate: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.5 + i * 0.1, type: "spring" }}
                     className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-body font-semibold flex items-center gap-1 ${
-                      isPopular ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
+                      isPopular ? "bg-destructive text-white" : "bg-accent text-accent-foreground"
                     }`}
                   >
                     {isPopular ? <Star className="w-3 h-3" /> : <Crown className="w-3 h-3" />}
