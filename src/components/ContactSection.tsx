@@ -103,7 +103,7 @@ const ContactSection = () => {
               className="mt-6 rounded-lg overflow-hidden border border-border h-[300px]"
             >
               <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=41.630350,22.459959&zoom=18"
+                src="https://maps.google.com/maps?q=41.630350,22.459959&z=18&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
