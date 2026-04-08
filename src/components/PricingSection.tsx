@@ -66,7 +66,7 @@ const PricingSection = () => {
                     animate={isInView ? { scale: 1, rotate: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.5 + i * 0.1, type: "spring" }}
                     className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-body font-semibold flex items-center gap-1 ${
-                      isPopular ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
+                      isPopular ? "bg-destructive text-white" : "bg-accent text-accent-foreground"
                     }`}
                   >
                     {isPopular ? <Star className="w-3 h-3" /> : <Crown className="w-3 h-3" />}
