@@ -34,15 +34,15 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-background/95 shadow-lg shadow-primary/5 border-b border-border/50"
-          : "bg-background/70"
+          : "bg-transparent"
       }`}
-      style={{ backdropFilter: "blur(16px)" }}
+      style={{ backdropFilter: scrolled ? "blur(16px)" : "none" }}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <button onClick={() => scrollTo("home")} className="flex items-center gap-2">
-            <span className="font-display text-xl sm:text-2xl font-bold tracking-wider text-primary">ALPHA</span>
-            <span className="font-display text-xl sm:text-2xl font-light tracking-wider text-foreground">FITNESS</span>
+            <span className="font-display text-xl sm:text-2xl font-bold tracking-wider text-primary drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">ALPHA</span>
+            <span className="font-display text-xl sm:text-2xl font-light tracking-wider text-foreground drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">FITNESS</span>
           </button>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -50,7 +50,7 @@ const Navbar = () => {
               <button
                 key={link}
                 onClick={() => scrollTo(link)}
-                className="font-display text-sm tracking-widest text-foreground/80 hover:text-primary transition-colors duration-300 uppercase"
+                className="font-display text-sm tracking-widest text-foreground/90 hover:text-primary transition-colors duration-300 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
               >
                 {t(`nav.${link}`)}
               </button>
@@ -60,7 +60,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setLanguage(language === "mk" ? "en" : "mk")}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-body font-medium text-foreground/70 hover:text-foreground hover:bg-secondary transition-all duration-300"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-body font-medium text-foreground/80 hover:text-foreground hover:bg-secondary/80 transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
             >
               <Globe className="w-3.5 h-3.5" />
               {language === "mk" ? "EN" : "МК"}
@@ -68,7 +68,7 @@ const Navbar = () => {
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-md text-foreground/70 hover:text-foreground hover:bg-secondary transition-all duration-300"
+              className="p-2 rounded-md text-foreground/80 hover:text-foreground hover:bg-secondary/80 transition-all duration-300"
             >
               {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
