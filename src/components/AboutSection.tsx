@@ -20,14 +20,14 @@ const AboutSection = () => {
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -60, filter: "blur(10px)" }}
+            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div
               initial={{ width: 0 }}
               animate={isInView ? { width: "60px" } : {}}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="h-[2px] bg-primary mb-4"
             />
             <p className="font-display text-sm tracking-[0.3em] text-primary font-medium mb-3">
@@ -44,10 +44,10 @@ const AboutSection = () => {
               {features.map((feature, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -40 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
-                  whileHover={{ x: 8 }}
+                  transition={{ duration: 0.7, delay: 0.3 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 8, transition: { duration: 0.2 } }}
                   className="flex gap-4 items-start group cursor-default"
                 >
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
@@ -63,9 +63,9 @@ const AboutSection = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, x: 60, filter: "blur(10px)" }}
+            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
             <div className="relative overflow-hidden rounded-lg">
@@ -82,13 +82,13 @@ const AboutSection = () => {
             <motion.div
               initial={{ scale: 0 }}
               animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="absolute -bottom-4 -left-4 w-32 h-32 border-2 border-primary rounded-lg"
             />
             <motion.div
               initial={{ scale: 0 }}
               animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-lg"
             />
           </motion.div>

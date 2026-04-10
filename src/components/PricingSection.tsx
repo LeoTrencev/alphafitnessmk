@@ -48,10 +48,18 @@ const PricingSection = () => {
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1, type: "spring", stiffness: 100 }}
-                whileHover={{ y: -12, boxShadow: isPopular ? "0 20px 40px hsla(0, 80%, 50%, 0.25)" : isBest ? "0 20px 40px hsla(48, 100%, 50%, 0.2)" : "0 20px 40px hsla(0, 0%, 0%, 0.3)" }}
+                initial={{ opacity: 0, y: 60, rotateX: 15 }}
+                animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{
+                  y: -12,
+                  boxShadow: isPopular
+                    ? "0 25px 50px hsla(0, 80%, 50%, 0.3)"
+                    : isBest
+                    ? "0 25px 50px hsla(48, 100%, 50%, 0.25)"
+                    : "0 25px 50px hsla(0, 0%, 0%, 0.4)",
+                  transition: { duration: 0.3 }
+                }}
                 className={`relative rounded-lg p-6 border transition-all duration-300 ${
                   isPopular
                     ? "bg-destructive/10 border-destructive shadow-lg shadow-destructive/10"

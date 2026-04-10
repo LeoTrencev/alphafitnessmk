@@ -32,9 +32,11 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-background/95 shadow-lg shadow-primary/5 border-b border-border/50" : "bg-transparent"
+        scrolled
+          ? "bg-background/95 shadow-lg shadow-primary/5 border-b border-border/50"
+          : "bg-background/70"
       }`}
-      style={{ backdropFilter: scrolled ? "blur(16px)" : "none" }}
+      style={{ backdropFilter: "blur(16px)" }}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
@@ -48,7 +50,7 @@ const Navbar = () => {
               <button
                 key={link}
                 onClick={() => scrollTo(link)}
-                className="font-display text-sm tracking-widest text-muted-foreground hover:text-primary transition-colors duration-300 uppercase"
+                className="font-display text-sm tracking-widest text-foreground/80 hover:text-primary transition-colors duration-300 uppercase"
               >
                 {t(`nav.${link}`)}
               </button>
@@ -58,7 +60,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setLanguage(language === "mk" ? "en" : "mk")}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-body font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-300"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-body font-medium text-foreground/70 hover:text-foreground hover:bg-secondary transition-all duration-300"
             >
               <Globe className="w-3.5 h-3.5" />
               {language === "mk" ? "EN" : "МК"}
@@ -66,7 +68,7 @@ const Navbar = () => {
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-300"
+              className="p-2 rounded-md text-foreground/70 hover:text-foreground hover:bg-secondary transition-all duration-300"
             >
               {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
@@ -96,7 +98,7 @@ const Navbar = () => {
                 <button
                   key={link}
                   onClick={() => scrollTo(link)}
-                  className="font-display text-lg tracking-widest text-muted-foreground hover:text-primary transition-colors text-left uppercase"
+                  className="font-display text-lg tracking-widest text-foreground/80 hover:text-primary transition-colors text-left uppercase"
                 >
                   {t(`nav.${link}`)}
                 </button>

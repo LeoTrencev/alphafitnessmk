@@ -1,7 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -33,7 +33,12 @@ const GallerySection = () => {
   const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const navigate = (dir: number) => {
+    if (selectedIndex === null) return;
+    setSelectedIndex((selectedIndex + dir + images.length) % images.length);
+  };
 
   return (
     <section id="gallery" className="section-padding bg-secondary/30" ref={ref}>
@@ -62,14 +67,14 @@ const GallerySection = () => {
           {images.map((img, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.05 }}
-              whileHover={{ y: -8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: Math.min(i * 0.04, 0.8), ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.03, zIndex: 10 }}
               className={`relative overflow-hidden rounded-lg cursor-pointer group ${
                 i === 0 || i === 7 || i === 14 ? "row-span-2" : ""
               }`}
-              onClick={() => setSelectedImage(img)}
+              onClick={() => setSelectedIndex(i)}
             >
               <img
                 src={img}
@@ -78,41 +83,49 @@ const GallerySection = () => {
                 loading="lazy"
                 style={{ minHeight: i === 0 || i === 7 || i === 14 ? "400px" : "200px" }}
               />
-              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-500" />
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-1 bg-primary"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.4 }}
-                style={{ originX: 0 }}
-              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
             </motion.div>
           ))}
         </div>
       </div>
 
       <AnimatePresence>
-        {selectedImage && (
+        {selectedIndex !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+            onClick={() => setSelectedIndex(null)}
           >
             <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-6 right-6 text-foreground hover:text-primary transition-colors"
+              onClick={() => setSelectedIndex(null)}
+              className="absolute top-6 right-6 text-white/70 hover:text-primary transition-colors z-10"
             >
               <X className="w-8 h-8" />
             </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); navigate(-1); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-primary transition-colors z-10"
+            >
+              <ChevronLeft className="w-10 h-10" />
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); navigate(1); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-primary transition-colors z-10"
+            >
+              <ChevronRight className="w-10 h-10" />
+            </button>
             <motion.img
-              initial={{ scale: 0.8, opacity: 0 }}
+              key={selectedIndex}
+              initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              src={selectedImage}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              src={images[selectedIndex]}
               alt="Gallery preview"
               className="max-w-full max-h-[85vh] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
         )}
