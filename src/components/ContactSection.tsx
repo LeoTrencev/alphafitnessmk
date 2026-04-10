@@ -1,18 +1,12 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const ContactSection = () => {
   const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    window.location.href = `mailto:alphafitnessmk@gmail.com?subject=Контакт од ${formData.name}&body=${formData.message}`;
-  };
 
   const contactInfo = [
     { icon: MapPin, label: t("contact.address"), value: 'бул. "Александар Македонски" бр.3, Радовиш' },
@@ -43,32 +37,32 @@ const ContactSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Contact Info & Hours */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-1 space-y-6"
           >
-            <div className="space-y-6 mb-8">
-              {contactInfo.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  whileHover={{ x: 6 }}
-                  className="flex gap-4 items-start group"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
-                    <item.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-body text-sm text-muted-foreground mb-1">{item.label}</p>
-                    <p className="font-body text-foreground font-medium">{item.value}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            {contactInfo.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                whileHover={{ x: 6, transition: { duration: 0.2 } }}
+                className="flex gap-4 items-start group"
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
+                  <item.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-body text-sm text-muted-foreground mb-1">{item.label}</p>
+                  <p className="font-body text-foreground font-medium">{item.value}</p>
+                </div>
+              </motion.div>
+            ))}
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -95,71 +89,26 @@ const ContactSection = () => {
                 </div>
               </div>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-6 rounded-lg overflow-hidden border border-border h-[300px]"
-            >
-              <iframe
-                src="https://maps.google.com/maps?q=41.630350,22.459959&z=18&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Alpha Fitness Location - бул. Александар Македонски бр.3, Радовиш"
-              />
-            </motion.div>
           </motion.div>
 
+          {/* Map - takes 2 columns */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="lg:col-span-2 rounded-lg overflow-hidden border border-border"
+            style={{ minHeight: "500px" }}
           >
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="font-body text-sm text-muted-foreground mb-2 block">{t("contact.name")}</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground font-body focus:outline-none focus:border-primary focus:shadow-[0_0_15px_hsla(48,100%,50%,0.15)] transition-all duration-300"
-                  required
-                />
-              </div>
-              <div>
-                <label className="font-body text-sm text-muted-foreground mb-2 block">{t("contact.email")}</label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground font-body focus:outline-none focus:border-primary focus:shadow-[0_0_15px_hsla(48,100%,50%,0.15)] transition-all duration-300"
-                  required
-                />
-              </div>
-              <div>
-                <label className="font-body text-sm text-muted-foreground mb-2 block">{t("contact.message")}</label>
-                <textarea
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={6}
-                  className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground font-body focus:outline-none focus:border-primary focus:shadow-[0_0_15px_hsla(48,100%,50%,0.15)] transition-all duration-300 resize-none"
-                  required
-                />
-              </div>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02, boxShadow: "0 0 30px hsla(48, 100%, 50%, 0.3)" }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 bg-primary text-primary-foreground font-display text-sm tracking-widest uppercase hover:bg-primary/90 transition-all duration-300 rounded-sm"
-              >
-                {t("contact.send")}
-              </motion.button>
-            </form>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1500!2d22.459959!3d41.630350!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDM3JzQ5LjMiTiAyMsKwMjcnMzUuOSJF!5e0!3m2!1sen!2smk!4v1700000000000"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: "500px" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Alpha Fitness Location - бул. Александар Македонски бр.3, Радовиш"
+            />
           </motion.div>
         </div>
       </div>

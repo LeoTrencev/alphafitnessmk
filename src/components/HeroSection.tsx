@@ -15,15 +15,15 @@ const HeroSection = () => {
           className="w-full h-full object-cover"
           width={1920}
           height={1080}
-          initial={{ scale: 1.2 }}
+          initial={{ scale: 1.15 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 20, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+          transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
         />
         <div className="absolute inset-0 hero-overlay" />
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-primary/15 to-transparent"
-          animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"
+          animate={{ opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
@@ -31,24 +31,24 @@ const HeroSection = () => {
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "80px" }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="h-[2px] bg-primary mx-auto mb-6"
         />
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="font-body text-sm sm:text-base tracking-[0.4em] text-primary font-medium mb-4"
         >
           {t("hero.subtitle")}
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-foreground whitespace-pre-line mb-4"
+          initial={{ opacity: 0, y: 50, filter: "blur(12px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-white whitespace-pre-line mb-4 drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
         >
           {t("hero.title")}
         </motion.h1>
@@ -56,18 +56,18 @@ const HeroSection = () => {
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "120px" }}
-          transition={{ duration: 1, delay: 0.8 }}
+          transition={{ duration: 1, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="h-[2px] bg-primary mx-auto mb-8"
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          transition={{ duration: 0.8, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsla(48, 100%, 50%, 0.4)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 40px hsla(48, 100%, 50%, 0.5)" }}
             whileTap={{ scale: 0.95 }}
             onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
             className="px-8 py-3.5 bg-primary text-primary-foreground font-display text-sm tracking-widest uppercase hover:bg-primary/90 transition-all duration-300 rounded-sm"
@@ -78,7 +78,7 @@ const HeroSection = () => {
             whileHover={{ scale: 1.05, borderColor: "hsl(48, 100%, 50%)" }}
             whileTap={{ scale: 0.95 }}
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-8 py-3.5 border border-foreground/30 text-foreground font-display text-sm tracking-widest uppercase hover:bg-foreground/10 transition-all duration-300 rounded-sm"
+            className="px-8 py-3.5 border border-white/30 text-white font-display text-sm tracking-widest uppercase hover:bg-white/10 transition-all duration-300 rounded-sm"
           >
             {t("hero.hours")}
           </motion.button>
@@ -88,12 +88,12 @@ const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        transition={{ delay: 1.8, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <button
           onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-          className="text-foreground/50 hover:text-primary transition-colors"
+          className="text-white/50 hover:text-primary transition-colors"
         >
           <ChevronDown className="w-8 h-8 animate-bounce" />
         </button>
