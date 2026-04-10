@@ -5,10 +5,12 @@ import GallerySection from "@/components/GallerySection";
 import PricingSection from "@/components/PricingSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import CursorFollower from "@/components/CursorFollower";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <CursorFollower />
       <Navbar />
       <HeroSection />
       <AboutSection />

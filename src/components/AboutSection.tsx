@@ -20,14 +20,14 @@ const AboutSection = () => {
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -60, filter: "blur(10px)" }}
-            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div
               initial={{ width: 0 }}
               animate={isInView ? { width: "60px" } : {}}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.5 }}
               className="h-[2px] bg-primary mb-4"
             />
             <p className="font-display text-sm tracking-[0.3em] text-primary font-medium mb-3">
@@ -44,13 +44,12 @@ const AboutSection = () => {
               {features.map((feature, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -40 }}
+                  initial={{ opacity: 0, x: -30 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.7, delay: 0.3 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ x: 8, transition: { duration: 0.2 } }}
+                  transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                   className="flex gap-4 items-start group cursor-default"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors duration-200">
                     <feature.icon className="w-6 h-6 text-primary" />
                   </div>
                   <div>
@@ -63,32 +62,30 @@ const AboutSection = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 60, filter: "blur(10px)" }}
-            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
             className="relative"
           >
             <div className="relative overflow-hidden rounded-lg">
-              <motion.img
+              <img
                 src={aboutImg}
                 alt="Alpha Fitness gym interior"
                 className="w-full h-[500px] object-cover"
                 loading="lazy"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
             </div>
             <motion.div
               initial={{ scale: 0 }}
               animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, delay: 0.4 }}
               className="absolute -bottom-4 -left-4 w-32 h-32 border-2 border-primary rounded-lg"
             />
             <motion.div
               initial={{ scale: 0 }}
               animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, delay: 0.5 }}
               className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-lg"
             />
           </motion.div>
