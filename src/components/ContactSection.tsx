@@ -38,7 +38,6 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Info & Hours */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -91,19 +90,18 @@ const ContactSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Map - takes 2 columns */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-2 rounded-lg overflow-hidden border border-border"
-            style={{ minHeight: "500px" }}
+            className="lg:col-span-2 rounded-xl overflow-hidden border border-border shadow-lg shadow-black/20"
+            style={{ minHeight: "550px" }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1500!2d22.459959!3d41.630350!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDM3JzQ5LjMiTiAyMsKwMjcnMzUuOSJF!5e0!3m2!1sen!2smk!4v1700000000000"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1500!2d22.459959!3d41.630350!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135541c58a9f09c7%3A0x7955d64503b3c0c9!2sAlpha%20Fitness!5e0!3m2!1smk!2smk!4v1700000000000&style=element:geometry%7Ccolor:0x212121&style=element:labels.text.fill%7Ccolor:0xd4a017"
               width="100%"
               height="100%"
-              style={{ border: 0, minHeight: "500px" }}
+              style={{ border: 0, minHeight: "550px", filter: "saturate(0.8) contrast(1.1)" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
