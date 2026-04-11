@@ -20,11 +20,13 @@ const Navbar = () => {
   }, []);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+    setIsOpen(false);
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return (
@@ -42,7 +44,11 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <button onClick={() => scrollTo("home")} className="flex items-center gap-2">
-            <img src={logoImg} alt="Alpha Fitness" className="h-10 sm:h-12 w-auto rounded" />
+            <img src={logoImg} alt="Alpha Fitness" className="h-8 sm:h-10 w-auto rounded" />
+            <div className="flex items-center gap-1">
+              <span className={`font-display text-lg font-bold tracking-wider ${scrolled ? 'text-primary' : 'text-white'} transition-colors duration-300`}>ALPHA</span>
+              <span className={`font-display text-lg font-light tracking-wider ${scrolled ? 'text-foreground' : 'text-white'} transition-colors duration-300`}>FITNESS</span>
+            </div>
           </button>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -50,7 +56,11 @@ const Navbar = () => {
               <button
                 key={link}
                 onClick={() => scrollTo(link)}
-                className="font-display text-sm tracking-widest text-foreground/90 hover:text-primary transition-colors duration-300 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+                className={`font-display text-sm tracking-widest uppercase transition-colors duration-300 ${
+                  scrolled
+                    ? 'text-foreground/90 hover:text-primary'
+                    : 'text-white hover:text-primary drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]'
+                }`}
               >
                 {t(`nav.${link}`)}
               </button>
@@ -60,7 +70,11 @@ const Navbar = () => {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setLanguage(language === "mk" ? "en" : "mk")}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-body font-medium text-foreground/80 hover:text-foreground hover:bg-secondary/80 transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-body font-medium transition-all duration-300 ${
+                scrolled
+                  ? 'text-foreground/80 hover:text-foreground hover:bg-secondary/80'
+                  : 'text-white hover:text-primary drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]'
+              }`}
             >
               <Globe className="w-3.5 h-3.5" />
               {language === "mk" ? "EN" : "МК"}
@@ -68,14 +82,18 @@ const Navbar = () => {
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-md text-foreground/80 hover:text-foreground hover:bg-secondary/80 transition-all duration-300"
+              className={`p-2 rounded-md transition-all duration-300 ${
+                scrolled
+                  ? 'text-foreground/80 hover:text-foreground hover:bg-secondary/80'
+                  : 'text-white hover:text-primary'
+              }`}
             >
               {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-foreground"
+              className={`lg:hidden p-2 ${scrolled ? 'text-foreground' : 'text-white'}`}
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>

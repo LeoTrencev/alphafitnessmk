@@ -1,6 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import heroImg from "@/assets/homepage.jpg";
 
 const HeroSection = () => {
@@ -84,20 +83,6 @@ const HeroSection = () => {
           </motion.button>
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <button
-          onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-          className="text-white/50 hover:text-primary transition-colors"
-        >
-          <ChevronDown className="w-8 h-8 animate-bounce" />
-        </button>
-      </motion.div>
     </section>
   );
 };

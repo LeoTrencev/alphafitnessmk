@@ -29,7 +29,7 @@ const translations: Translations = {
   "about.feature3.title": { mk: "Флексибилно работно време", en: "Flexible Hours" },
   "about.feature3.desc": { mk: "Отворени 7 дена во неделата со удобно работно време", en: "Open 7 days a week with convenient working hours" },
   "gallery.subtitle": { mk: "ГАЛЕРИЈА", en: "GALLERY" },
-  "gallery.title": { mk: "Твојата арена за трансформација", en: "Your arena for transformation" },
+  "gallery.title": { mk: "Каде се коват шампиони", en: "Where Champions Are Forged" },
   "pricing.subtitle": { mk: "ЦЕНОВНИК", en: "PRICING" },
   "pricing.title": { mk: "Ценовник", en: "Pricing" },
   "pricing.daily": { mk: "1 Ден", en: "1 Day" },
