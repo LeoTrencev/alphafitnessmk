@@ -3,6 +3,7 @@ import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
+import logoImg from "@/assets/logo.jpg";
 
 const navLinks = ["home", "about", "gallery", "pricing", "contact"] as const;
 
@@ -41,8 +42,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <button onClick={() => scrollTo("home")} className="flex items-center gap-2">
-            <span className="font-display text-xl sm:text-2xl font-bold tracking-wider text-primary drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">ALPHA</span>
-            <span className="font-display text-xl sm:text-2xl font-light tracking-wider text-foreground drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">FITNESS</span>
+            <img src={logoImg} alt="Alpha Fitness" className="h-10 sm:h-12 w-auto rounded" />
           </button>
 
           <div className="hidden lg:flex items-center gap-8">

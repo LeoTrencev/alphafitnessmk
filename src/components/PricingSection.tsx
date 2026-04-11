@@ -1,6 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { Check, Star, Crown } from "lucide-react";
 
 const PricingSection = () => {
@@ -9,11 +9,11 @@ const PricingSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const plans = [
-    { name: t("pricing.daily"), price: "100", badge: null },
-    { name: t("pricing.biweekly"), price: "700", badge: null },
-    { name: t("pricing.monthly"), price: "1,100", badge: t("pricing.popular") },
-    { name: t("pricing.quarterly"), price: "2,700", badge: null },
-    { name: t("pricing.yearly"), price: "8,000", badge: t("pricing.bestValue") },
+    { name: t("pricing.daily"), price: 100, badge: null },
+    { name: t("pricing.biweekly"), price: 700, badge: null },
+    { name: t("pricing.monthly"), price: 1100, badge: t("pricing.popular") },
+    { name: t("pricing.quarterly"), price: 2700, badge: null },
+    { name: t("pricing.yearly"), price: 8000, badge: t("pricing.bestValue") },
   ];
 
   const features = [t("pricing.feature1"), t("pricing.feature2"), t("pricing.feature3")];
@@ -65,7 +65,7 @@ const PricingSection = () => {
 };
 
 interface PricingCardProps {
-  plan: { name: string; price: string; badge: string | null };
+  plan: { name: string; price: number; badge: string | null };
   index: number;
   isInView: boolean;
   isPopular: boolean;
@@ -73,6 +73,22 @@ interface PricingCardProps {
   features: string[];
   den: string;
 }
+
+const AnimatedPrice = ({ value, isInView }: { value: number; isInView: boolean }) => {
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const controls = animate(0, value, {
+      duration: 2,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (v) => setDisplay(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [isInView, value]);
+
+  return <>{display.toLocaleString()}</>;
+};
 
 const PricingCard = ({ plan, index, isInView, isPopular, isBest, features, den }: PricingCardProps) => {
   const [hovered, setHovered] = useState(false);
@@ -84,7 +100,7 @@ const PricingCard = ({ plan, index, isInView, isPopular, isBest, features, den }
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`relative rounded-lg p-6 border transition-all duration-200 ${
+      className={`relative rounded-lg p-6 border transition-all duration-150 ${
         isPopular
           ? "bg-destructive/10 border-destructive shadow-lg shadow-destructive/10"
           : isBest
@@ -122,14 +138,9 @@ const PricingCard = ({ plan, index, isInView, isPopular, isBest, features, den }
       </h3>
 
       <div className="text-center mb-6">
-        <motion.span
-          className="font-display text-4xl font-bold text-foreground inline-block"
-          initial={{ scale: 0 }}
-          animate={isInView ? { scale: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.2 + index * 0.08, type: "spring", stiffness: 200 }}
-        >
-          {plan.price}
-        </motion.span>
+        <span className="font-display text-4xl font-bold text-foreground inline-block">
+          <AnimatedPrice value={plan.price} isInView={isInView} />
+        </span>
         <span className="font-body text-sm text-muted-foreground ml-1">{den}</span>
       </div>
 
