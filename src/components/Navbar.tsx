@@ -46,7 +46,7 @@ const Navbar = () => {
           <button onClick={() => scrollTo("home")} className="flex items-center gap-2">
             <img src={logoImg} alt="Alpha Fitness" className="h-8 sm:h-10 w-auto rounded" />
             <div className="flex items-center gap-1">
-              <span className={`font-display text-lg font-bold tracking-wider ${scrolled ? 'text-primary' : 'text-white'} transition-colors duration-300`}>ALPHA</span>
+              <span className="font-display text-lg font-bold tracking-wider text-primary transition-colors duration-300">ALPHA</span>
               <span className={`font-display text-lg font-light tracking-wider ${scrolled ? 'text-foreground' : 'text-white'} transition-colors duration-300`}>FITNESS</span>
             </div>
           </button>
