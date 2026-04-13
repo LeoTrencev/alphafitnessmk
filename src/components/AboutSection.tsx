@@ -74,7 +74,7 @@ const AboutSection = () => {
                 className="w-full h-[500px] object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent dark:from-background/60 light:from-background/30" />
             </div>
             <motion.div
               initial={{ scale: 0 }}
